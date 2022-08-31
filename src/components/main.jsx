@@ -1,6 +1,6 @@
 
 function Main_left() {
-   return <div className="w-1/2 flex flex-col gap-8 h-96 justify-center  m-20 pl-10 ">
+   return <div className="w-1/2 flex flex-col gap-8 h-96 justify-center   pl-10 mt-14">
 
       <div>
          <h3>MEET STEREOTAPE</h3>
@@ -28,7 +28,7 @@ function Main_right() {
          <p className=" text-left ">Users</p>
          <h1 className=" text-3xl font-bold " >+120M</h1>
       </div>
-      <div className=" relative right-20 top-14 bg-slate-400 rounded-xl w-32 text-center p-3 h-20 ">
+      <div className=" relative right-20 top-60 bg-slate-400 rounded-xl w-32 text-center p-3 h-20 ">
          <p className=" text-left ">Users</p>
          <h1 className=" text-3xl font-bold " >+120M</h1>
       </div>
