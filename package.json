@@ -9,10 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "gapi-script": "^1.2.0",
     "icons": "^1.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.4.0"
+    "react-google-login": "^5.2.2",
+    "react-icons": "^4.4.0",
+    "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",

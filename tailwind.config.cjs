@@ -13,7 +13,8 @@ module.exports = {
         'mainBackground': "url('./src/Asserts/pexels-gustavo-fring-4127623.jpg')"
       },
       colors: {
-        'mainColor': '#2F3444'
+        'mainColor': '#2F3444',
+        'backOpacity': 'rgba(255,255,255,0.3)'
       },
     },
   },
