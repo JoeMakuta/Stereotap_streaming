@@ -57,6 +57,7 @@ function Login() {
             className='w-80 h-10  m-auto border-none flex justify-center items-center drop-shadow-none '
          />
 
+
          <div className='block m-auto w-72 text-xs '>
             <p>
                We bring artists from all over the world in your headphones for you to listen to.
