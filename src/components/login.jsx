@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { GoogleLogin } from 'react-google-login';
 import { gapi } from 'gapi-script';
 import { useEffect } from 'react';
+import SpotifyLogin from './spotifyLogin';
 
 
 function Login() {
@@ -23,7 +24,7 @@ function Login() {
    });
 
    const onSuccess = (res) => {
-      navigation('/Header')
+      navigation('/HomePage')
       console.log('success:', res);
    };
    const onFailure = (err) => {
@@ -32,7 +33,7 @@ function Login() {
 
 
    return (
-      <div className="bg-backOpacity w-96 h-3/4 rounded-3xl m-auto   flex flex-col text-center backdrop-blur">
+      <div className="bg-backOpacity w-[40%] h-3/4 rounded-3xl m-auto   flex flex-col text-center backdrop-blur">
          <img src={Logo} alt="" className='w-60 block m-auto ' />
          <div className='w-80 m-auto text-left flex flex-col gap-2'>
             <p>Email</p>
@@ -52,9 +53,10 @@ function Login() {
             onSuccess={onSuccess}
             onFailure={onFailure}
             cookiePolicy={'single_host_origin'}
-            isSignedIn={true}
-            className='w-80 h-10  m-auto border-none border-mainColor rounded-full flex justify-center items-center gap-5 '
+            isSignedIn={false}
+            className='w-80 h-10  m-auto border-none flex justify-center items-center bg-emerald-500 '
          />
+
 
          <div className='block m-auto w-72 text-xs '>
             <p>

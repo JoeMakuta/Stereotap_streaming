@@ -10,7 +10,11 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        'mainBackground': "url('./src/Asserts/pexels-gustavo-fring-4127623.jpg')"
+        'mainBackground': "url('./src/Asserts/pexels-gustavo-fring-4127623.jpg')",
+        'subMainBackground': "url('./src/Asserts/pexels-andrea-piacquadio-783243.jpg')",
+        'thirdBackground': "url('./src/Asserts/pexels-orione-conceição-8663209.jpg')"
+
+
       },
       colors: {
         'mainColor': '#2F3444',
