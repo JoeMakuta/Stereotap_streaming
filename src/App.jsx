@@ -5,18 +5,29 @@ import Main from './components/main'
 import Login from './components/login'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import SpotifyLogin from './components/spotifyLogin'
+import Search from './components/seach'
 
+function HomePage() {
+  return (
+    <div>
+      <Header />
+      <Main />
+    </div>
+  )
+}
 
 
 function App() {
 
 
-  return (<div className='font-mainFont bg-mainBackground text-mainColor pr-10 pl-10 bg-cover h-screen flex flex-col'>
+  return (<div className='font-mainFont bg-thirdBackground text-mainColor pr-10 pl-10 bg-cover h-screen flex flex-col'>
     <BrowserRouter>
       <Routes>
-        <Route path="/Header" element={<Header />} />
+        <Route path="/HomePage" element={<HomePage />} />
         <Route path='/' element={<Login />} />
         <Route path='/SpotifyLogin' element={<SpotifyLogin />} />
+        <Route path='/Search' element={<Search />} />
+
       </Routes>
     </BrowserRouter>
 

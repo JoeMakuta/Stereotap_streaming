@@ -24,7 +24,7 @@ function Login() {
    });
 
    const onSuccess = (res) => {
-      navigation('/SpotifyLogin')
+      navigation('/HomePage')
       console.log('success:', res);
    };
    const onFailure = (err) => {
@@ -33,7 +33,7 @@ function Login() {
 
 
    return (
-      <div className="bg-backOpacity w-3/4 h-3/4 rounded-3xl m-auto   flex flex-col text-center backdrop-blur">
+      <div className="bg-backOpacity w-[40%] h-3/4 rounded-3xl m-auto   flex flex-col text-center backdrop-blur">
          <img src={Logo} alt="" className='w-60 block m-auto ' />
          <div className='w-80 m-auto text-left flex flex-col gap-2'>
             <p>Email</p>
@@ -54,7 +54,7 @@ function Login() {
             onFailure={onFailure}
             cookiePolicy={'single_host_origin'}
             isSignedIn={false}
-            className='w-80 h-10  m-auto border-none flex justify-center items-center drop-shadow-none '
+            className='w-80 h-10  m-auto border-none flex justify-center items-center bg-emerald-500 '
          />
 
 
