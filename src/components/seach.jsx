@@ -4,6 +4,7 @@ import { FiSearch } from 'react-icons/fi'
 import img from '../Asserts/pexels-andrea-piacquadio-783243.jpg'
 import Logo from '../Asserts/STEREOTAP  okay (1).png'
 import { useEffect } from "react"
+import { BsFillPlayCircleFill } from 'react-icons/bs'
 
 
 const CLIENT_ID = "54dd20a883734a9694e1230f65f26f5c"
@@ -12,8 +13,11 @@ const CLIENT_SECRET = '315d9419f0b24138b2160fd00d854dad'
 function Search() {
 
    const [token, setToken] = useState(null)
-   const [searchKey, setSearchKey] = useState('Passenger')
+   const [searchKey, setSearchKey] = useState('pass')
    const [albumData, setAlbumData] = useState([])
+   const [mySource, setMySource] = useState('')
+   const [showIframe, setShowIframe] = useState(false)
+   const [artistData, setArtistData] = useState([])
 
    let authificationParameters = {
       method: "POST",
@@ -26,7 +30,9 @@ function Search() {
    useEffect(() => {
       fetch('https://accounts.spotify.com/api/token', authificationParameters)
          .then(result => result.json())
-         .then(result => setToken(result.access_token))
+         .then(result => setToken(result.access_token));
+      search()
+
    }, [])
 
    async function search() {
@@ -38,30 +44,35 @@ function Search() {
          }
 
       }
-      let artistId = await fetch('https://api.spotify.com/v1/search?q=' + searchKey + '&type=artist', artistParameters)
+      let artistId = await fetch('https://api.spotify.com/v1/search?q=' + searchKey + '&type=artist&limit=5', artistParameters)
          .then(result => result.json())
          .then(result => {
             if (result.artists.items[0].id) {
+               // console.log(result.artists.items);
+               setArtistData(result.artists.items)
                return result.artists.items[0].id
             }
          })
-      console.log(artistId);
+      console.log('The artists data are : ', artistData);
 
       let artistAlbums = await fetch('https://api.spotify.com/v1/artists/' + artistId + '/albums?includes_groups=album&market=US&limit=5', artistParameters)
          .then(result => result.json())
          .then(result => result.items)
       setAlbumData(artistAlbums)
       console.log(albumData)
-
    }
 
-
+   function displayIframe(id) {
+      // console.log('The id is : ' + id);
+      setMySource("https://open.spotify.com/embed/album/" + id + "?utm_source=generator")
+      setShowIframe(true)
+   }
 
    return (
       <div>
 
          <div
-            className="bg-backOpacity h-fit w-[100%] p-10 rounded-3xl m-auto    backdrop-blur pb-20 mb-10 mt-10 app flex flex-col gap-3">
+            className="bg-backOpacity h-fit w-[100%] p-10 rounded-3xl m-auto    backdrop-blur pb-20 mb-10 mt-10  flex flex-col gap-3">
             {/* <div className="flex gap-60 justify-center items-center mb-4 w-96 m-auto" >
                <img src={Logo} alt="" className='w-40 block m-auto ' />
                <div className="flex gap-20 text-sm " >
@@ -72,36 +83,65 @@ function Search() {
             </div> */}
 
             <div className="flex text-center items-center justify-center">
-               <div className=" w-96 h-14 p-2 bg-white rounded-3xl flex justify-center items-center gap-3 ">
-                  <FiSearch size={20} />
+               <div className=" w-96 h-14 p-2 bg-white rounded-3xl flex justify-center items-center gap-3 "  >
+                  <FiSearch size={0} />
                   <input type="text" className="outline-none" placeholder="Search for you artist ..." onChange={elt => setSearchKey(elt.target.value)} onKeyPress={search
+                  } onLoad={search
                   } />
                </div>
 
 
                {/* <button className=" bg-mainColor h-14 text-white p-5 outline-none  ">Search</button> */}
             </div>
+
+
+            <h1 className=" font-bold text-3xl ml-10 " >Artists</h1>
+            <div className="flex gap-6  items-start justify-center flex-wrap ">
+               {
+                  artistData.map((artist, index) => {
+                     return (
+                        <div key={index} className="w-52 bg-neutral-900 bg-opacity-5 hover:scale-105 hover:bg-green-600 hover:bg-opacity-100 hover:text-white transition-all  flex flex-col p-5 gap-5 mt-4 rounded-2xl min-h- cursor-pointer hover:shadow-2xl shadow-green-600 items-center " >
+                           <img src={artist.images[0].url} className=" rounded-full w-40 " alt="" />
+                           <div className="text-center">
+                              <p className="font-bold " >{artist.name}</p>
+                              <p className=" text-xs ">Artist</p>
+                           </div>
+
+
+                        </div>
+                     )
+                  })
+               }
+            </div>
+
             <h1 className=" font-bold text-3xl ml-10 " >Albums</h1>
-            <div className="flex gap-6 items-center justify-center flex-wrap ">
+            <div className="flex gap-6 items-start justify-center flex-wrap ">
                {
                   albumData.map((album, index) => {
                      return (
-                        <div className="w-52  bg-white flex flex-col  mt-4 rounded-2xl cursor-pointer hover:shadow-2xl shadow-green-600 "  >
+                        <div key={index} className="w-52  hover:bg-white hover:scale-110 transition-all bg-backOpacity flex flex-col  mt-4 rounded-2xl min-h- cursor-pointer hover:shadow-2xl shadow-green-600 " onClick={() => { displayIframe(album.id) }} >
                            <img src={album.images[0].url} className=" rounded-t-xl" alt="" />
                            <div className=" p-5 ">
-                              <p className="font-bold " >{album.artists[0].name}</p>
-                              <p className=" text-sm ">{album.name}</p>
+                              <p className="font-bold " >{album.name}</p>
+                              <p className=" text-sm ">{album.artists[0].name}</p>
+                           </div>
+                           <div className="m-auto absolute top-16 hover:top-0 transition-all w-52 h-52 rounded-2xl  hover:opacity-100 opacity-0 flex items-center justify-center ">
+                              <BsFillPlayCircleFill className="  " size={100} />
+
                            </div>
                         </div>
                      )
                   })
                }
             </div>
+
+
+            {showIframe && <iframe src={mySource} width="95%" height='80' className="  rounded-lg m-auto  z-10 mt-10 mb-10 " frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" ></iframe>
+            }
+
             <h1 className=" font-bold text-3xl ml-10 " >Songs</h1>
 
-
          </div>
-
 
       </div>
 
