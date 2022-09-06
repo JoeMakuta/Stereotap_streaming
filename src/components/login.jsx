@@ -33,9 +33,9 @@ function Login() {
 
 
    return (
-      <div className="bg-backOpacity w-[40%] h-3/4 rounded-3xl m-auto   flex flex-col text-center backdrop-blur">
+      <div className="bg-backOpacity w-[80%] h-3/4 rounded-3xl m-auto   flex flex-col text-center backdrop-blur">
          <img src={Logo} alt="" className='w-60 block m-auto ' />
-         <div className='w-80 m-auto text-left flex flex-col gap-2'>
+         {/* <div className='w-80 m-auto text-left flex flex-col gap-2'>
             <p>Email</p>
             <input type="text" className='w-80 h-8 border border-mainColor block m-auto' />
             <p>Password</p>
@@ -45,7 +45,7 @@ function Login() {
 
                CONNEXION
             </button>
-         </div>
+         </div> */}
 
          <GoogleLogin
             clientId={clientId}

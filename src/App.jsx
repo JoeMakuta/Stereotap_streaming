@@ -20,17 +20,17 @@ function HomePage() {
 function App() {
 
 
-  return (<div className='font-mainFont bg-thirdBackground text-mainColor pr-10 pl-10 bg-cover h-screen flex flex-col'>
+  return (<div className='font-mainFont bg-thirdBackground app h-screen text-mainColor pr-10 pl-10 bg-cover  flex flex-col'>
     <BrowserRouter>
       <Routes>
         <Route path="/HomePage" element={<HomePage />} />
         <Route path='/' element={<Login />} />
         <Route path='/SpotifyLogin' element={<SpotifyLogin />} />
         <Route path='/Search' element={<Search />} />
-
+        
       </Routes>
     </BrowserRouter>
-
+  
   </div>)
 }
 

@@ -3,9 +3,10 @@
 @tailwind utilities;
 
 @layer base {
-  a:hover{
-    font-weight: bold;
-    color: #438D9D;
+  
+
+  .app{
+    background: radial-gradient(91.42% 118.67% at 62.83% 28%, #8BACC9 0%, #FFFFFF 100%);
   }
   
 
