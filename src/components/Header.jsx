@@ -27,7 +27,7 @@ function Header() {
             {/* <button className='  w-20 h-10 border hover:bg-mainColor hover:text-white rounded-lg border-mainColor '>Login</button> */}
 
 
-            <button className='w-1/5 h-10 border hover:scale-105 transition-transform bg-mainColor text-white rounded-lg border-mainColor hover:bg-inherit hover:text-mainColor '>Get started</button>
+            <button className='w-1/5 h-10 border hover:scale-105 transition-transform bg-mainColor text-white  border-mainColor hover:bg-inherit hover:text-mainColor '>Get started</button>
 
 
          </div>

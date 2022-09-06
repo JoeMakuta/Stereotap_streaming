@@ -17,7 +17,7 @@ function Main_left() {
       <div className=" flex gap-10 items-center" >
          <button onClick={() => {
             navigate('/spotifyLogin')
-         }} className='w-40 h-10 border bg-mainColor text-white rounded-lg border-mainColor hover:bg-inherit hover:text-mainColor '>Get started</button>
+         }} className='w-40 h-10 border bg-mainColor text-white  border-mainColor hover:bg-inherit hover:text-mainColor '>Get started</button>
          <a href="" className=" hover:text-cyan-700 " >Learn more</a>
       </div>
    </div>
