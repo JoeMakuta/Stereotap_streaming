@@ -15,11 +15,8 @@ function SpotifyLogin() {
    const [token, setToken] = useState('')
    const navigate = useNavigate(null)
 
-
-
    return (
       <div>
-
          <div
             className="bg-backOpacity h-[80vh] w-[80%] mt-12  rounded-3xl m-auto   flex flex-col text-center items-center justify-center backdrop-blur">
             <img src={Logo} alt="" className='w-60 block m-auto ' />
@@ -36,11 +33,8 @@ function SpotifyLogin() {
                   We bring artists from all over the world in your headphones for you to listen to.
                </p>
             </div>
-
          </div>
-
       </div>
-
    )
 }
 

@@ -18,6 +18,7 @@ function Search() {
    const [mySource, setMySource] = useState('')
    const [showIframe, setShowIframe] = useState(false)
    const [artistData, setArtistData] = useState([])
+   const [songs, setSongs] = useState([])
 
 
    let artistParameters = {
@@ -54,13 +55,17 @@ function Search() {
                return result.artists.items[0].id
             }
          })
-
       fetchAlbums(artistId)
-
+      searchSong()
       console.log('The artists data are : ', artistData);
+   }
 
-
-
+   const searchSong = async () => {
+      let searchedSongs = await fetch('https://api.spotify.com/v1/search?q=' + searchKey + '&type=track&limit=10', artistParameters)
+         .then(songs => songs.json())
+         .then(songs => songs)
+      setSongs(searchedSongs.tracks.items)
+      console.log('The songs are : ', songs);
    }
 
    const fetchAlbums = async (trackId) => {
@@ -78,7 +83,7 @@ function Search() {
 
    function displayArtistAlbum(id) {
       fetchAlbums(id)
-      console.log(id);
+      // console.log(id);
    }
 
    return (
@@ -107,7 +112,6 @@ function Search() {
                {/* <button className=" bg-mainColor h-14 text-white p-5 outline-none  ">Search</button> */}
             </div>
 
-
             <h1 className=" font-bold text-3xl ml-10 " >Artists</h1>
             <div className=" w-[100%] h-72 overflow-x-auto flex gap-6  items-start justify-center flex-wrap ">
                {
@@ -125,12 +129,30 @@ function Search() {
                }
             </div>
 
+
+            <h1 className=" font-bold text-3xl ml-10 " >Songs</h1>
+            <div className=" w-[100%] h-96 overflow-x-auto flex flex-row gap-2  items-start justify-center flex-wrap ">
+               {
+                  songs.map((song, index) => {
+                     return (
+                        <div key={index} className="w-[90%] bg-neutral-900 bg-opacity-5   transition-all  flex flex-row items-center  p-3 gap-5 cursor-pointer hover:shadow-2xl "  >
+                           <img src={song && song.album && song.album.images[0]?.url} className=" rounded-full w-10 " alt="" />
+
+                           <p className="font-bold " >{song.name}</p>
+                           <p className=" text-xs ">Song</p>
+
+                        </div>
+                     )
+                  })
+               }
+            </div>
+
             <h1 className=" font-bold text-3xl ml-10 " >Albums</h1>
             <div className="flex gap-6 items-start justify-center flex-wrap ">
                {
                   albumData.map((album, index) => {
                      return (
-                        <div key={index} className="w-52 hover:scale-110 transition-all flex flex-col  mt-4 rounded-2xl cursor-pointer hover:shadow-2xl shadow-green-600 " onClick={() => { displayIframe(album.id) }} >
+                        <div key={index} className="w-52 hover:scale-105 bg-neutral-900 bg-opacity-5  transition-all flex flex-col  mt-4 rounded-2xl cursor-pointer hover:shadow-2xl shadow-green-600 " onClick={() => { displayIframe(album.id) }} >
                            <img src={album.images[0].url} className=" rounded-t-xl " alt="" />
                            <div className=" p-5 ">
                               <p className="font-bold " >{album.name}</p>
@@ -150,7 +172,8 @@ function Search() {
             {showIframe && <iframe src={mySource} width="95%" height='380' className="  rounded-lg m-auto  z-10 mt-10 mb-10 " frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" ></iframe>
             }
 
-            <h1 className=" font-bold text-3xl ml-10 " >Songs</h1>
+
+
 
          </div>
 

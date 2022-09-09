@@ -20,7 +20,7 @@ function HomePage() {
 function App() {
 
 
-  return (<div className='font-mainFont bg-mainBackground h-screen text-mainColor pr-10 pl-10 bg-cover  flex flex-col'>
+  return (<div className='font-mainFont bg-mainBackground bg-repeat  text-mainColor pr-10 pl-10 bg-cover  flex flex-col'>
     <BrowserRouter>
       <Routes>
         <Route path="/HomePage" element={<HomePage />} />
