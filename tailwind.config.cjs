@@ -6,7 +6,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      'mainFont': 'Poppins, sans-serif;'
+      'mainFont': 'Ubuntu, sans-serif;'
     },
     extend: {
       backgroundImage: {
@@ -19,7 +19,6 @@ module.exports = {
         'mainColor': '#2F3444',
         'backOpacity': 'rgba(255,255,255,0.3)',
         'blackOpacity': 'rgba(0,0,0,0.5)'
-
       },
 
     },
