@@ -92,7 +92,7 @@ function Search() {
       <div>
          {/* <Header /> */}
          <div
-            className="bg-backOpacity h-fit w-[100%] p-10 rounded-3xl m-auto    backdrop-blur pb-20 mb-10 flex flex-col gap-3">
+            className="bg-backOpacity h-fit w-[100%] p-3 rounded-3xl m-auto    backdrop-blur pb-20 mb-10 flex flex-col gap-3">
             {/* <div className="flex gap-60 justify-center items-center mb-4 w-96 m-auto" >
                <img src={Logo} alt="" className='w-40 block m-auto ' />
                <div className="flex gap-20 text-sm " >
