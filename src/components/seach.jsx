@@ -5,6 +5,7 @@ import img from '../Asserts/pexels-andrea-piacquadio-783243.jpg'
 import Logo from '../Asserts/STEREOTAP  okay (1).png'
 import { useEffect } from "react"
 import { BsFillPlayCircleFill } from 'react-icons/bs'
+import { AiFillPlayCircle } from 'react-icons/ai'
 
 
 const CLIENT_ID = "54dd20a883734a9694e1230f65f26f5c"
@@ -19,6 +20,7 @@ function Search() {
    const [showIframe, setShowIframe] = useState(false)
    const [artistData, setArtistData] = useState([])
    const [songs, setSongs] = useState([])
+   const [songId, setSongId] = useState('0FmfRErQFP13h77PKWCawW')
 
 
    let artistParameters = {
@@ -88,9 +90,9 @@ function Search() {
 
    return (
       <div>
-
+         {/* <Header /> */}
          <div
-            className="bg-backOpacity h-fit w-[100%] p-10 rounded-3xl m-auto    backdrop-blur pb-20 mb-10 mt-10 flex flex-col gap-3">
+            className="bg-backOpacity h-fit w-[100%] p-3 rounded-3xl m-auto    backdrop-blur pb-20 mb-10 flex flex-col gap-3">
             {/* <div className="flex gap-60 justify-center items-center mb-4 w-96 m-auto" >
                <img src={Logo} alt="" className='w-40 block m-auto ' />
                <div className="flex gap-20 text-sm " >
@@ -111,40 +113,54 @@ function Search() {
 
                {/* <button className=" bg-mainColor h-14 text-white p-5 outline-none  ">Search</button> */}
             </div>
-
-            <h1 className=" font-bold text-3xl ml-10 " >Artists</h1>
-            <div className=" w-[100%] h-72 overflow-x-auto flex gap-6  items-start justify-center flex-wrap ">
-               {
-                  artistData.map((artist, index) => {
-                     return (
-                        <div key={index} className="w-52 bg-neutral-900 bg-opacity-5   transition-all  flex flex-col items-center  p-5 gap-5 rounded-2xl cursor-pointer hover:shadow-2xl " onClick={() => { displayArtistAlbum(artist.id) }} >
-                           <img src={artist && artist.images && artist.images[0]?.url} className=" rounded-full w-40 " alt="" />
-                           <div className="text-center">
-                              <p className="font-bold " >{artist.name}</p>
-                              <p className=" text-xs ">Artist</p>
+            <div >
+               <h1 className=" font-bold text-3xl ml-10 " >Artists</h1>
+               <div className=" w-[100%] flex gap-6  items-start justify-center flex-wrap ">
+                  {
+                     artistData.map((artist, index) => {
+                        return (
+                           <div key={index} className="w-52 bg-neutral-900 bg-opacity-5  hover:scale-105 transition-all  flex flex-col items-center  p-5 gap-5 rounded-2xl cursor-pointer hover:shadow-2xl " onClick={() => { displayArtistAlbum(artist.id) }} >
+                              <img src={artist && artist.images && artist.images[0]?.url} className=" rounded-full w-40 " alt="" />
+                              <div className="text-center">
+                                 <p className="font-bold " >{artist.name}</p>
+                                 <p className=" text-xs ">Artist</p>
+                              </div>
                            </div>
-                        </div>
-                     )
-                  })
-               }
+                        )
+                     })
+                  }
+               </div>
             </div>
 
 
-            <h1 className=" font-bold text-3xl ml-10 " >Songs</h1>
-            <div className=" w-[100%] h-96 overflow-x-auto flex flex-row gap-2  items-start justify-center flex-wrap ">
-               {
-                  songs.map((song, index) => {
-                     return (
-                        <div key={index} className="w-[90%] bg-neutral-900 bg-opacity-5   transition-all  flex flex-row items-center  p-3 gap-5 cursor-pointer hover:shadow-2xl "  >
-                           <img src={song && song.album && song.album.images[0]?.url} className=" rounded-full w-10 " alt="" />
+            <div>
+               <div className=" bg-gradient-to-l from-cyan-200   to-blue-300 p-10 rounded-xl ">
+                  <h1 className=" font-bold text-3xl ml-10 " >Songs</h1>
+                  < iframe src={"https://open.spotify.com/embed/track/" + songId + "?utm_source=generator"} width="90%" height={100} className=" mt-10 mb-5 m-auto " ></iframe>
+                  <div className=" w-[100%]  overflow-x-auto flex flex-row  items-start justify-center flex-wrap ">
+                     {
+                        songs.map((song, index) => {
+                           return (
+                              <div key={index} title="Click to play" className="w-[90%] hover:scale-105 hover:bg-neutral-900 hover:bg-opacity-10   transition-all  flex flex-row items-center  p-2 gap-5 cursor-pointer " onClick={() => setSongId(song.id)} >
+                                 <p>{index + 1}</p>
+                                 <img src={song && song.album && song.album.images[0]?.url} className=" rounded-full w-10 " alt="" />
 
-                           <p className="font-bold " >{song.name}</p>
-                           <p className=" text-xs ">Song</p>
 
-                        </div>
-                     )
-                  })
-               }
+                                 <div>
+                                    <p className="font-bold w-60 " >{song.name}</p>
+                                    <p className=" w-60" > {song.artists[0].name}</p>
+                                 </div>
+                                 <p className=" text-xs w-60 ">Song</p>
+                                 <p className=" text-end w-96" >{parseInt(song.duration_ms / 60000)}:{parseInt((song.duration_ms % 60000) / 3600).toString().padStart(2, 0)}</p>
+                              </div>
+                           )
+                        })
+
+                     }
+                  </div>
+
+               </div>
+
             </div>
 
             <h1 className=" font-bold text-3xl ml-10 " >Albums</h1>
@@ -177,7 +193,7 @@ function Search() {
 
          </div>
 
-      </div>
+      </div >
 
    )
 }

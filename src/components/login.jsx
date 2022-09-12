@@ -35,7 +35,7 @@ function Login() {
    return (
       <div className="bg-backOpacity w-[80%] h-3/4 rounded-3xl m-auto   flex flex-col text-center backdrop-blur">
          <img src={Logo} alt="" className='w-60 block m-auto ' />
-         {/* <div className='w-80 m-auto text-left flex flex-col gap-2'>
+         <div className='w-80 m-auto text-left flex flex-col gap-2'>
             <p>Email</p>
             <input type="text" className='w-80 h-8 border border-mainColor block m-auto' />
             <p>Password</p>
@@ -45,7 +45,7 @@ function Login() {
 
                CONNEXION
             </button>
-         </div> */}
+         </div>
 
          <GoogleLogin
             clientId={clientId}
@@ -54,11 +54,11 @@ function Login() {
             onFailure={onFailure}
             cookiePolicy={'single_host_origin'}
             isSignedIn={false}
-            className='w-80 h-10  m-auto border-none flex justify-center items-center bg-emerald-500 '
+            className='w-80 h-10 mt-10 mb-10  m-auto border-none flex justify-center items-center bg-emerald-500 '
          />
 
 
-         <div className='block m-auto w-72 text-xs '>
+         <div className='block m-auto w-72 text-xs mb-10 '>
             <p>
                We bring artists from all over the world in your headphones for you to listen to.
             </p>
