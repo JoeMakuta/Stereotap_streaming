@@ -12,9 +12,6 @@ function SpotifyLogin() {
    const endpoint_spotify = 'https://accounts.spotify.com/authorize'
    const response_type = 'token'
 
-   const [token, setToken] = useState('')
-   const navigate = useNavigate(null)
-
    return (
       <div>
          <div
