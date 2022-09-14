@@ -8,8 +8,8 @@ import { BsFillPlayCircleFill } from 'react-icons/bs'
 import { AiFillPlayCircle } from 'react-icons/ai'
 
 
-const CLIENT_ID = "54dd20a883734a9694e1230f65f26f5c"
-const CLIENT_SECRET = '315d9419f0b24138b2160fd00d854dad'
+const CLIENT_ID = import.meta.env.VITE_CLIENT_ID
+const CLIENT_SECRET = import.meta.env.VITE_CLIENT_SECRET
 
 function Search() {
 
@@ -21,6 +21,7 @@ function Search() {
    const [artistData, setArtistData] = useState([])
    const [songs, setSongs] = useState([])
    const [songId, setSongId] = useState('0FmfRErQFP13h77PKWCawW')
+   const [display, setDisplay] = useState('artists')
 
 
    let artistParameters = {
@@ -86,19 +87,28 @@ function Search() {
    return (
       <div>
          {/* <Header /> */}
-         <div className="flex text-center items-center mb-10 mt-10 justify-center">
-            <div className=" w-96 h-14 p-2 bg-white rounded-3xl flex justify-center items-center gap-3 fixed z-20 "  >
+         <div className=" flex  w-full text-center  mb-10 mt-5 justify-evenly fixed z-20 m-auto gap-6">
+
+
+            <div className=" w-[40%] h-14 p-2 pl-10 bg-white rounded-3xl flex justify-start items-center gap-3  "  >
                <FiSearch size={0} />
-               <input type="text" className="outline-none" placeholder="Search for you artist ..." onChange={elt => setSearchKey(elt.target.value)} onKeyPress={search
+               <input type="text" className="outline-none w-full" placeholder="Search for you artist ..." onChange={elt => setSearchKey(elt.target.value)} onKeyPress={search
                } onLoad={search
                } />
             </div>
+            <div className="flex justify-start items-center gap-10">
+               <button className="block bg-slate-500 rounded-full w-[100px] h-full text-white" >Artists</button>
+               <button className="block">Albums</button>
+               <button className="block">Tracks</button>
+            </div>
+
             {/* <button className=" bg-mainColor h-14 text-white p-5 outline-none  ">Search</button> */}
          </div>
 
 
+
          <div
-            className="bg-backOpacity h-fit w-[100%] p-3 rounded-3xl m-auto    backdrop-blur pb-20 mb-10 flex flex-col gap-3">
+            className="bg-backOpacity h-fit w-[100%] p-3 rounded-3xl m-auto  mt-28  backdrop-blur pb-20 mb-10 flex flex-col gap-3">
             {/* <div className="flex gap-60 justify-center items-center mb-4 w-96 m-auto" >
                <img src={Logo} alt="" className='w-40 block m-auto ' />
                <div className="flex gap-20 text-sm " >
@@ -109,6 +119,7 @@ function Search() {
             </div> */}
 
 
+
             <div >
                <h1 className=" font-bold text-3xl mt-10 ml-10 " >Artists</h1>
                <div className=" w-[100%] flex gap-6  mt-8 items-start justify-center flex-wrap ">
@@ -116,7 +127,10 @@ function Search() {
                      artistData.map((artist, index) => {
                         return (
                            <div key={index} className="w-40 bg-neutral-900 bg-opacity-5  hover:scale-105 transition-all  flex flex-col items-center  p-5 gap-5 rounded-2xl cursor-pointer hover:shadow-2xl " onClick={() => { displayIframe("artist", artist.id) }} >
-                              <img src={artist && artist.images && artist.images[0]?.url} className=" rounded-full w-40 " alt="" />
+                              <div>
+                                 <img src={artist && artist.images && artist.images[0]?.url} className=" rounded-full w-40 " alt="" />
+                              </div>
+
                               <div className="text-center">
                                  <p className="font-bold " >{artist.name}</p>
                                  <p className=" text-xs ">Artist</p>

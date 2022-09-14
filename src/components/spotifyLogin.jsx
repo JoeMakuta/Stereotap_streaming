@@ -7,8 +7,8 @@ import { useEffect, useState } from 'react';
 import Header from './Header';
 
 function SpotifyLogin() {
-   const client_id = '54dd20a883734a9694e1230f65f26f5c';
-   const redirect_uri = 'http://localhost:5173/Search'
+   const client_id = import.meta.env.VITE_CLIENT_ID;
+   const redirect_uri = import.meta.env.VITE_REDIRECT_URI
    const endpoint_spotify = 'https://accounts.spotify.com/authorize'
    const response_type = 'token'
 
