@@ -11,7 +11,7 @@ function Login() {
 
    const navigation = useNavigate(null)
 
-   const clientId = '830343232707-8fb7nakkdppk2fl9nirjnjl6c328lihs.apps.googleusercontent.com';
+   const clientId = import.meta.env.VITE_CLIENT_ID_GOOGLE;
 
    useEffect(() => {
       const initClient = () => {
@@ -33,7 +33,7 @@ function Login() {
 
 
    return (
-      <div className="bg-backOpacity w-[80%] h-3/4 rounded-3xl m-auto   flex flex-col text-center backdrop-blur">
+      <div className="bg-backOpacity h-[80vh] w-[80%] mt-12  rounded-3xl m-auto   flex flex-col text-center items-center justify-center backdrop-blur">
          <img src={Logo} alt="" className='w-60 block m-auto ' />
          <div className='w-80 m-auto text-left flex flex-col gap-2'>
             <p>Email</p>
